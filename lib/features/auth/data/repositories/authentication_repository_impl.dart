@@ -2,36 +2,36 @@ import 'package:dio/dio.dart';
 import 'package:dartz/dartz.dart';
 import 'package:injectable/injectable.dart';
 
+import '../../../../core/error/failures.dart';
 import '../../../../core/params/login_param.dart';
-import '../../../../core/exception/type_exception.dart';
 
-import '../sources/login_source.dart';
+import '../models/access_token_model.dart';
 
 import '../../domain/repositories/authentication_repository.dart';
+import '../sources/remote_source.dart';
 
 @LazySingleton(as: AuthenticationRepository)
 class AuthenticationRepositoryImpl implements AuthenticationRepository {
-  final LoginSource _loginSource;
-  AuthenticationRepositoryImpl(this._loginSource);
+  final RemoteSource _source;
+  AuthenticationRepositoryImpl(this._source);
 
   @override
-  Future<Either<TypeException, String>> login({required String email,required  String password}) async {
+  Future<Either<Failure, AccessTokenModel>> login(LoginParam param) async {
     try {
-      final LoginParam param = LoginParam(email: email, password: password);
-      final response = await _loginSource.auth(param);
+      final response = await _source.auth(param);
 
-      return right(response.accessToken); 
+      return right(response); 
     } on DioError catch (e) {
       if (e.response?.statusCode == 401) {
-        return left(TypeException.unauthorized);
+        return left(UnauthorizedFailure());
       }
 
-      return left(TypeException.validation);
+      return left(ServerFailure());
     }
   }
 
   @override
-  Future<Either<TypeException, String>> passwordReminder(String email) {
+  Future<Either<Failure, String>> passwordReminder(String email) {
     // TODO: implement passwordReminder
     throw UnimplementedError();
   }
