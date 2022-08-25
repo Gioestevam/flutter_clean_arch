@@ -9,7 +9,13 @@ class AccessTokenModel extends AccessTokenEntity {
 
   factory AccessTokenModel.fromJson(Map<String, dynamic> map) {
     return AccessTokenModel(
-      accessToken: map['accessToken'] as String,
+      accessToken: map['access_token'] as String,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'access_token': accessToken
+    };
   }
 }
