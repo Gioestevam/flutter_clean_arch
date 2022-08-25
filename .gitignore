@@ -50,4 +50,4 @@ app.*.map.json
 
 # Flutter build generated files
 *.g.dart
-injector.config.dart 
+*.config.dart 
