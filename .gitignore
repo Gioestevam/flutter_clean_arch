@@ -10,6 +10,7 @@
 .svn/
 migrate_working_dir/
 .vscode/
+.fvm/
 
 # IntelliJ related
 *.iml
@@ -46,3 +47,7 @@ app.*.map.json
 /android/app/debug
 /android/app/profile
 /android/app/release
+
+# Flutter build generated files
+*.g.dart
+injector.config.dart 
