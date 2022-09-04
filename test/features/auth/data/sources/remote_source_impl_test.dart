@@ -9,21 +9,21 @@ import 'package:http_mock_adapter/http_mock_adapter.dart';
 import 'package:flutter_clean_arc/core/error/failures.dart';
 import 'package:flutter_clean_arc/core/params/login_param.dart';
 import 'package:flutter_clean_arc/features/auth/data/sources/auth_client.dart';
-import 'package:flutter_clean_arc/features/auth/data/sources/remote_source.dart';
+import 'package:flutter_clean_arc/features/auth/data/sources/auth_source.dart';
 import 'package:flutter_clean_arc/features/auth/data/models/access_token_model.dart';
-import 'package:flutter_clean_arc/features/auth/data/sources/remote_source_impl.dart';
+import 'package:flutter_clean_arc/features/auth/data/sources/remote/remote_source_impl.dart';
 
 class MockDioAdapter extends Mock implements DioAdapter {}
 
 void main() {
   final dio = Dio();
   late AuthClient _authClient;
-  late RemoteSource _source;
+  late AuthSource _source;
   late MockDioAdapter _mockDioAdapter;
   late LoginParam _param;
 
   final mapJson = '''{
-    "access_token": "any_token"
+    "token": "any_token"
   }''';
 
   final accessTokenModel = AccessTokenModel.fromJson(json.decode(mapJson));
