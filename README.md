@@ -1,16 +1,36 @@
-# flutter_clean_arc
+# Projeto em Flutter utilização Clean Architecture
 
-A new Flutter project.
+## Descrição
 
-## Getting Started
+Projeto focado em clean architecture, teste unitário, cubit e entre outros pacotes para desenvolvimento de aplicativos mobile usando o framework Flutter.
 
-This project is a starting point for a Flutter application.
+## Funcionalidades
 
-A few resources to get you started if this is your first Flutter project:
+- Tela de Login &check;
+- Tela Página Inicial &cross;
+- Tela de Recuperar Senha &cross;
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+## Dependências utilizado no projeto
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+- equatable (^2.0.5)
+- dartz (^0.10.1)
+- get_it (^7.2.0)
+- injectable (^1.5.3)
+- retrofit (^3.0.1)+1
+- dio (^4.0.6)
+- json_annotation (^4.6.0)
+- firebase_core (^1.21.1)
+- firebase_auth (^3.7.0)
+- flutter_bloc (^8.1.1)
+- rxdart (^0.27.5)
+
+## Dependências desenvolvimento utilizado no projeto
+- flutter_lints (^2.0.0)
+- build_runner (^2.2.0)
+- injectable_generator (^1.5.4)
+- retrofit_generator (^4.0.3+1 )
+- json_serializable (^6.3.1)
+- mocktail (^0.3.0)
+- faker (2.0.0)
+- http_mock_adapter (^0.3.3)
+- flutter_native_splash (^2.2.8)
