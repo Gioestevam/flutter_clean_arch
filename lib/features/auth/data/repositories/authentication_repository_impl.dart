@@ -8,11 +8,11 @@ import '../../../../core/params/login_param.dart';
 import '../models/access_token_model.dart';
 
 import '../../domain/repositories/authentication_repository.dart';
-import '../sources/remote_source.dart';
+import '../sources/auth_source.dart';
 
 @LazySingleton(as: AuthenticationRepository)
 class AuthenticationRepositoryImpl implements AuthenticationRepository {
-  final RemoteSource _source;
+  final AuthSource _source;
   AuthenticationRepositoryImpl(this._source);
 
   @override
@@ -20,10 +20,16 @@ class AuthenticationRepositoryImpl implements AuthenticationRepository {
     try {
       final response = await _source.auth(param);
 
-      return right(response); 
-    } on DioError catch (e) {
-      if (e.response?.statusCode == 401) {
-        return left(UnauthorizedFailure());
+      return Right(response);
+    } catch (e) {
+      if (e is DioError) {
+        if (e.response?.statusCode == 401) {
+          return left(UnauthorizedFailure());
+        }
+
+        return left(ServerFailure());
+      } else if (e is Failure) {
+        return left(e);
       }
 
       return left(ServerFailure());
@@ -31,8 +37,12 @@ class AuthenticationRepositoryImpl implements AuthenticationRepository {
   }
 
   @override
+  Future<void> logout() async => await _source.logout();
+
+  @override
   Future<Either<Failure, String>> passwordReminder(String email) {
     // TODO: implement passwordReminder
     throw UnimplementedError();
   }
+  
 }
