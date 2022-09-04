@@ -8,4 +8,5 @@ import '../../data/models/access_token_model.dart';
 abstract class AuthenticationRepository {
   Future<Either<Failure, AccessTokenModel>> login(LoginParam param);
   Future<Either<Failure, String>> passwordReminder(String email);
+  Future<void> logout();
 }
