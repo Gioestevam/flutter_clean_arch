@@ -7,16 +7,16 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:flutter_clean_arc/core/error/failures.dart';
 import 'package:flutter_clean_arc/core/params/login_param.dart';
 
-import 'package:flutter_clean_arc/features/auth/data/sources/remote_source.dart';
+import 'package:flutter_clean_arc/features/auth/data/sources/auth_source.dart';
 import 'package:flutter_clean_arc/features/auth/data/models/access_token_model.dart';
 import 'package:flutter_clean_arc/features/auth/data/repositories/authentication_repository_impl.dart';
 
 import 'package:flutter_clean_arc/features/auth/domain/repositories/authentication_repository.dart';
 
-class MockRemoteSource extends Mock implements RemoteSource {}
+class MockRemoteSource extends Mock implements AuthSource {}
 
 void main() {
-  final accessTokenModel = AccessTokenModel(accessToken: 'token');
+  final accessTokenModel = AccessTokenModel(token: 'token');
 
   late AuthenticationRepository _repository;  
   late MockRemoteSource _sourceMock;
