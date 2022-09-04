@@ -8,3 +8,4 @@ abstract class Failure extends Equatable {
 // General failures
 class ServerFailure extends Failure {}
 class UnauthorizedFailure extends Failure {}
+class NotFoundFailure extends Failure {}
