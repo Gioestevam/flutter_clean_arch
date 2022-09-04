@@ -1,21 +1,18 @@
+import 'package:json_annotation/json_annotation.dart';
+
 import '../../domain/entities/access_token_entity.dart';
 
+part 'access_token_model.g.dart';
+
+@JsonSerializable()
 class AccessTokenModel extends AccessTokenEntity {
   AccessTokenModel({
-    required String accessToken
+    required String token
   }): super(
-    accessToken: accessToken
+    token: token
   );
 
-  factory AccessTokenModel.fromJson(Map<String, dynamic> map) {
-    return AccessTokenModel(
-      accessToken: map['access_token'] as String,
-    );
-  }
+  factory AccessTokenModel.fromJson(Map<String, dynamic> json) => _$AccessTokenModelFromJson(json);
 
-  Map<String, dynamic> toJson() {
-    return {
-      'access_token': accessToken
-    };
-  }
+  Map<String, dynamic> toJson() => _$AccessTokenModelToJson(this);
 }
